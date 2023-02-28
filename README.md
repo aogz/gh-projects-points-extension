@@ -1,0 +1,1 @@
+# Sprint points calculator for github projects
