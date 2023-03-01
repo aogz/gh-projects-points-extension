@@ -1,6 +1,6 @@
 document.onkeydown = function (e) {
-  console.log(e);
   if (e.ctrlKey && e.altKey && e.key === "p") {
+    console.log("Calculating points...");
     const tableGroups = document.querySelectorAll('[data-test-id^="table-group-"][role="rowgroup"]');
 
     for (const tableGroup of tableGroups) {
