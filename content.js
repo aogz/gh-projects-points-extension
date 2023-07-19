@@ -4,7 +4,8 @@ document.onkeydown = function (e) {
     const tableGroups = document.querySelectorAll('[data-testid^="table-group-"][role="rowgroup"]');
 
     for (const tableGroup of tableGroups) {
-      const tableGroupHeader = tableGroup.querySelector('[data-testid^="table-group-header-"]');
+      const tableGroupHeader = tableGroup.querySelector('[data-testid^="group-header-"]');
+      console.log('tableGroupHeader', tableGroupHeader)
       const tableGroupRows = tableGroup.querySelectorAll('[role="row"]');
 
       let totalPoints = 0
@@ -31,7 +32,8 @@ document.onkeydown = function (e) {
 
         const itemsCounter = tableGroupHeader.querySelector('[data-testid="column-items-counter"]')
         const pointsLabel = document.createElement('span');
-        pointsLabel.innerText = `Points: ${completedPoints}/${totalPoints}`;
+        const percentage = Math.round((completedPoints / totalPoints) * 100);
+        pointsLabel.innerText = `Points: ${completedPoints}/${totalPoints} (${percentage}%)`;
         for (const klass of itemsCounter.classList) {
           pointsLabel.classList.add(klass);
         }
