@@ -5,16 +5,17 @@ document.onkeydown = function (e) {
 
     for (const tableGroup of tableGroups) {
       const tableGroupHeader = tableGroup.querySelector('[data-testid^="group-header-"]');
-      console.log('tableGroupHeader', tableGroupHeader)
+      console.log('tableGroupHeader', tableGroupHeader);
       const tableGroupRows = tableGroup.querySelectorAll('[role="row"]');
+      console.log('tableGroupRows', tableGroupRows);
 
       let totalPoints = 0
       let completedPoints = 0
       for (const row of tableGroupRows) {
-        const rowIdRegex = /TableRow{id: (.*)}/;
+        const rowIdRegex = /TableRow{(\w)+: (.*)}/;
         const rowIdMatch = row.getAttribute("data-testid").match(rowIdRegex);
         if (rowIdMatch) {
-          const rowId = rowIdMatch[1];
+          const rowId = rowIdMatch[2];
           const pointsCoulmn = `[data-testid="TableCell{row: ${rowId}, column: Points}"]`
           const isCompleted = row.querySelector('[aria-label="Closed as completed issue"]');
           const rowPoints = parseInt(row.querySelector(pointsCoulmn).innerText) || 0
